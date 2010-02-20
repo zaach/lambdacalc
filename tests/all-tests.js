@@ -18,5 +18,17 @@ exports["test parse failures"] = function () {
     }
 };
 
+exports["test parse fun AST"] = function () {
+    var expr = "^y.y";
+    var expected = ["FunExpr", "y", ["VarExpr", "y"]];
+    assert.deepEqual(interpreter.parse(expr), expected, expr+" should parse ok");
+};
+
+exports["test parse apply AST"] = function () {
+    var expr = "(^y.y) ^x.x";
+    var expected = ["ApplyExpr", ["FunExpr", "y", ["VarExpr", "y"]], ["FunExpr", "x", ["VarExpr", "x"]]];
+    assert.deepEqual(interpreter.parse(expr), expected, expr+" should parse ok");
+};
+
 if (require.main === module)
     require("os").exit(require("test").run(exports)); 
