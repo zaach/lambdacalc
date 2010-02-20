@@ -4,12 +4,7 @@
 %%
 
 file
-  : exprs EOF
-  ;
-
-exprs
-  : exprs expr
-  | expr
+  : expr EOF
   ;
 
 expr

@@ -11,5 +11,12 @@ exports["test parse"] = function () {
     }
 };
 
+exports["test parse failures"] = function () {
+    var exps = "^x|^|^x.|^x.()".split("|");
+    for (var i=0;i<exps.length;i++) {
+        assert["throws"](function() { interpreter.parse(exps[i])}, exps[i]+" should not parse");
+    }
+};
+
 if (require.main === module)
     require("os").exit(require("test").run(exports)); 
