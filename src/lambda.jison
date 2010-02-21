@@ -10,7 +10,7 @@ file
 
 expr
   : LAMBDA var '.' expr
-    { $$ = ["FunExpr", $var, $expr]; }
+    { $$ = ["LambdaExpr", $var, $expr]; }
   | expr SEP expr
     { $$ = ["ApplyExpr", $expr1, $expr2]; }
   | var

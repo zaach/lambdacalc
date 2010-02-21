@@ -22,31 +22,31 @@ exports["test parse failures"] = function () {
 
 exports["test parse fun AST"] = function () {
     var expr = "^y.y";
-    var expected = ["FunExpr", "y", ["VarExpr", "y"]];
+    var expected = ["LambdaExpr", "y", ["VarExpr", "y"]];
     assert.deepEqual(parse(expr), expected, expr+" should parse ok");
 };
 
 exports["test parse apply AST"] = function () {
     var expr = "(^y.y) ^x.x";
-    var expected = ["ApplyExpr", ["FunExpr", "y", ["VarExpr", "y"]], ["FunExpr", "x", ["VarExpr", "x"]]];
+    var expected = ["ApplyExpr", ["LambdaExpr", "y", ["VarExpr", "y"]], ["LambdaExpr", "x", ["VarExpr", "x"]]];
     assert.deepEqual(parse(expr), expected, expr+" should parse ok");
 };
 
 exports["test evaluate apply"] = function () {
     var expr = "(^y.y) ^x.x";
-    var expected = ["FunExpr", "x", ["VarExpr", "x"]];
+    var expected = ["LambdaExpr", "x", ["VarExpr", "x"]];
     assert.deepEqual(parse(evl(expr)), expected, expr+" should eval");
 };
 
 exports["test evaluate apply"] = function () {
     var expr = "(^y.y) ^x.x";
-    var expected = ["FunExpr", "x", ["VarExpr", "x"]];
+    var expected = ["LambdaExpr", "x", ["VarExpr", "x"]];
     assert.deepEqual(parse(evl(expr)), expected, expr+" should eval");
 };
 
 exports["test evaluate fun"] = function () {
     var expr = "^y.y";
-    var expected = ["FunExpr", "y", ["VarExpr", "y"]];
+    var expected = ["LambdaExpr", "y", ["VarExpr", "y"]];
     assert.deepEqual(parse(evl(expr)), expected, expr+" should eval");
 };
 
@@ -55,5 +55,6 @@ exports["test evaluate free variable should fail"] = function () {
     assert["throws"](function () {evl(expr);}, expr+" should not eval");
 };
 
-if (require.main === module)
+if (require.main === module) {
     require("os").exit(require("test").run(exports)); 
+}
