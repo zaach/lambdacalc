@@ -1,4 +1,4 @@
-(λ-calculus)[http://en.wikipedia.org/wiki/Lambda_calculus]
+[λ-calculus](http://en.wikipedia.org/wiki/Lambda_calculus)
 ==========
 This script parses and evaluates (untyped) lambda calculus expressions. It uses a call-by-value reduction strategy (because that was the easiest.)
 
