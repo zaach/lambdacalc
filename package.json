@@ -1,0 +1,14 @@
+{
+  "name": "lambdacalc",
+  "author": "Zach Carter",
+  "email": "zach@carter.name",
+  "keywords": [
+      "lambda",
+      "calculus",
+      "interpreter",
+      "langauge"
+  ],
+  "githubName": "lambdacalc",
+  "type": "zip",
+  "location": "http://github.com/zaach/lambdacalc/zipball/master"
+}
