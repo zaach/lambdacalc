@@ -10,8 +10,8 @@ var cwd = FILE.path(FILE.cwd());
 jake.task("build", ["build_commonjs"]);
 
 jake.task("build_commonjs", function () {
-    OS.system(['jison', 'src/lambda.jison', 'src/lambda.jisonlex']);
-    OS.system(['mv', 'lambda.js', 'lib/lambda/parser.js']);
+    OS.system(['jison', 'src/lambdacalc.jison', 'src/lambdacalc.jisonlex']);
+    OS.system(['mv', 'lambdacalc.js', 'lib/lambdacalc/parser.js']);
 });
 
 jake.task("test", function () {

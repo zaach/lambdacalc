@@ -2,7 +2,7 @@
 
 var fs = require("file"),
     assert = require("assert"),
-    interpreter = require("../lib/lambda");
+    interpreter = require("../lib/lambdacalc");
     evl = interpreter.eval,
     parse = interpreter.parse;
 
