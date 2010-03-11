@@ -50,9 +50,43 @@ exports["test evaluate fun"] = function () {
     assert.deepEqual(parse(evl(expr)), expected, expr+" should eval");
 };
 
+exports["test evaluate fun with application"] = function () {
+    var expr = "^y.y y";
+    var expected = ["LambdaExpr", "y", ["ApplyExpr", ["VarExpr", "y"], ["VarExpr", "y"]]];
+    assert.deepEqual(parse(evl(expr)), expected, expr+" should eval");
+};
+
+exports["test evaluate fun with application"] = function () {
+    var expr = "^y.^x.x y";
+    var expected = ["LambdaExpr", "y", ["LambdaExpr", "x", ["ApplyExpr", ["VarExpr", "x"], ["VarExpr", "y"]]]];
+    assert.deepEqual(parse(evl(expr)), expected, expr+" should eval");
+};
+
 exports["test evaluate free variable should fail"] = function () {
     var expr = "y";
     assert["throws"](function () {evl(expr);}, expr+" should not eval");
+};
+
+exports["test concise lambdas"] = function () {
+    var expr = "^xyz.x y z";
+    var expected = ["LambdaExpr", "x",
+                        ["LambdaExpr", "y",
+                            ["LambdaExpr", "z",
+                                ["ApplyExpr",
+                                    ["ApplyExpr",
+                                        ["VarExpr", "x"], ["VarExpr", "y"]], ["VarExpr", "z"]]]]];
+    assert.deepEqual(parse(evl(expr)), expected, expr+" should eval");
+};
+
+exports["test concise lambdas"] = function () {
+    var expr = "(((^xyz.y z) ^a.a) ^b.b) ^c.c";
+    var expected = ["LambdaExpr", "c",["VarExpr", "c"]];
+    assert.deepEqual(parse(evl(expr)), expected, expr+" should eval");
+};
+
+exports["test parse Alan Turing's call-by-value Y combinator"] = function () {
+    var expr = "(^x. ^y. (y (^z. x x y z))) (^x. ^y. (y (^z. x x y z)))";
+    assert.ok(parse(evl(expr)), expr+" should parse");
 };
 
 if (require.main === module) {

@@ -3,7 +3,7 @@
 "("       { return '('; }
 ")"       { return ')'; }
 "^"|"λ"   { return 'LAMBDA'; }
-"."       { return '.'; }
+"."\s?    { return '.'; }
 [a-zA-Z]  { return 'VAR'; }
 \s+       { return 'SEP'; }
 <<EOF>>   { return 'EOF'; }
