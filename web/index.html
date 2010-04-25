@@ -1,0 +1,55 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <meta charset="utf-8"> 
+  <title>Lambda Calculus Evaluator</title> 
+  <style>
+  body {
+    font-family: Helvetica, sans-serif;
+    background-color: #e8eef6;
+    color: #234;
+    text-shadow: 0px 1px 0px white;
+  }
+  textarea {
+    font-size: 1.2em;
+    border: 1px inset #fff;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+  }
+  </style>
+</head> 
+<body onload="main()"> 
+
+  <h1>Lambda Calculus Evaluator</h1>
+  <p>Call-by-value edition.</p>
+
+  <textarea cols="80" rows="20" id="source">(^x.x x) ^y.y</textarea>
+  <p>
+    <button id="run">Run</button>
+  </p>
+
+  <pre id="result"></pre>
+
+  <p>By <a href="http://zaa.ch">Zach Carter</a>, 2010. MIT Licensed.</p> 
+  
+  <a href="http://github.com/zaach/lambdacalc"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a> 
+ 
+  <script src="lambdacalc.js"></script>
+  <script>
+  function main () {
+    var lambdacalc = require("lambdacalc");
+    console.log(lambdacalc);
+
+    document.getElementById("run").onclick = function () {
+      try {
+        var result = lambdacalc.eval(document.getElementById("source").value);
+        document.getElementById("result").innerHTML = result;
+      } catch(e) {
+        document.getElementById("result").innerHTML = e;
+      }
+    };
+
+  }
+  </script>
+</body> 
+</html>
