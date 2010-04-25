@@ -1,80 +1,55 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <meta charset="utf-8"> 
+  <title>Lambda Calculus Evaluator</title> 
+  <style>
+  body {
+    font-family: Helvetica, sans-serif;
+    background-color: #e8eef6;
+    color: #234;
+    text-shadow: 0px 1px 0px white;
+  }
+  textarea {
+    font-size: 1.2em;
+    border: 1px inset #fff;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+  }
+  </style>
+</head> 
+<body onload="main()"> 
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <h1>Lambda Calculus Evaluator</h1>
+  <p>Call-by-value edition.</p>
 
-	<title>zaach/lambdacalc @ GitHub</title>
-	
-	<style type="text/css">
-		body {
-  		margin-top: 1.0em;
-  		background-color: #30851e;
-		  font-family: "Helvetica,Arial,FreeSans";
-  		color: #ffffff;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-		h1 { font-size: 3.8em; color: #cf7ae1; margin-bottom: 3px; }
-		h1 .small { font-size: 0.4em; }
-		h1 a { text-decoration: none }
-		h2 { font-size: 1.5em; color: #cf7ae1; }
-    h3 { text-align: center; color: #cf7ae1; }
-    a { color: #cf7ae1; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-		pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-	</style>
-	
-</head>
+  <textarea cols="80" rows="20" id="source">(^x.x x) ^y.y</textarea>
+  <p>
+    <button id="run">Run</button>
+  </p>
 
-<body>
-  <a href="http://github.com/zaach/lambdacalc"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+  <pre id="result"></pre>
 
-  <div id="container">
-
-    <div class="download">
-      <a href="http://github.com/zaach/lambdacalc/zipball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
-      <a href="http://github.com/zaach/lambdacalc/tarball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
-    </div>
-
-    <h1><a href="http://github.com/zaach/lambdacalc">lambdacalc</a>
-      <span class="small">by <a href="http://github.com/zaach">zaach</a></span></h1>
-
-    <div class="description">
-      A simple example of an interpreter in JS. Evaluates lambda calculus expressions.
-    </div>
-
-    <h2>Authors</h2>
-<p>Zachary Carter (zack.carter@gmail.com)<br/><br/>      </p>
-<h2>Contact</h2>
-<p>Zach Carter (zack.carter@gmail.com)<br/>      </p>
-
-
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="http://github.com/zaach/lambdacalc/zipball/master">zip</a> or
-      <a href="http://github.com/zaach/lambdacalc/tarball/master">tar</a> formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/zaach/lambdacalc</pre>
-    </p>
-
-    <div class="footer">
-      get the source code on GitHub : <a href="http://github.com/zaach/lambdacalc">zaach/lambdacalc</a>
-    </div>
-
-  </div>
-
+  <p>By <a href="http://zaa.ch">Zach Carter</a>, 2010. MIT Licensed.</p> 
   
-</body>
+  <a href="http://github.com/zaach/lambdacalc"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a> 
+ 
+  <script src="lambdacalc.js"></script>
+  <script>
+  function main () {
+    var lambdacalc = require("lambdacalc");
+    console.log(lambdacalc);
+
+    document.getElementById("run").onclick = function () {
+      try {
+        var result = lambdacalc.eval(document.getElementById("source").value);
+        document.getElementById("result").innerHTML = result;
+      } catch(e) {
+        document.getElementById("result").innerHTML = e;
+      }
+    };
+
+  }
+  </script>
+</body> 
 </html>
